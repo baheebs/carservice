@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<center><h1>WELCOME TO CAREPOINT</h1></center>
+<div class="card" style="background-color:#191c24">
+                  <div class="card-body">
+                    <h4 class="card-title">Carepoint Category Details</h4>
+<!--                    <p class="card-description"> Basic form elements </p>-->
+                     <form class="forms-sample" method="post" action="{%url 'savecat' %}" class="forms-sample" enctype="multipart/form-data"
+                      method="post">
+                      {% csrf_token %}
+                        <div class="form-group">
+                        <label for="exampleInputName1">CATEGORY NAME</label>
+                        <input type="text" class="form-control" id="exampleInputName1" placeholder="Name" name="name">
+                        </div>
+                         <br>
+                        <div class="form-group">
+                        <label for="exampleInputdescription">DESCRIPTION</label>
+                        <input type="text" class="form-control" id="exampleInputdescription" placeholder="Description" name="desc">
+                        </div>
+                        <br>
+                        <div>
+                        <label> CATEGORY IMAGE </label>
+                        <input type="file" name="image">
+
+<!--                        <input type="file" name="image">-->
+                        </div>
+                        <br>
+
+                      <button onclick="alertmsg()" type="submit" class="btn btn-primary mr-2">Submit</>
+                      <button class="btn btn-dark">Cancel</button>
+                    </form>
+                  </div>
+                </div>
+<script>
+    function alertmsg(){
+        window.alert("added category succesfully")
+        }
+</script>
+
+</body>
+</html>
+{% endblock %}

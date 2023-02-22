@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="card" style="background-color:#191c24">
+    <div class="card-body">
+        <h4 class="card-title">Display booking status..</h4>
+<div class="table-responsive">
+                      <table class="table table-bordered">
+                        <thead>
+                          <tr>
+                            <th> name </th>
+                            <th> phone number </th>
+                            <th> Email </th>
+                            <th> Car model</th>
+                            <th> Time</th>
+                              <th>Date</th>
+                            <th>product number</th>
+                              <th>location</th>
+                              <th>payment</th>
+
+                          </tr>
+                        </thead>
+                        <tbody>
+                        {% for d in data %}
+                        <tr >
+                            <td>{{ d.Name}}</td>
+                            <td>{{ d.Phonenumber}}</td>
+                            <td>{{ d.Emailadress}}</td>
+                            <td>{{ d.QUANTITY}}</td>
+                             <td>{{ d.Time}}</td>
+                             <td>{{ d.Date}}</td>
+                              <td>{{ d.proddb}}</td>
+                            <td>{{d.LOCATION}}</td>
+                            <td>{{d.PAYMENT}}</td>
+
+                            <td>
+                                <form action="">
+                                    <button onclick="alertmsg()" type="submit" class="btn btn-success">Approve</button>
+                                </form>
+                            </td>
+
+                            <td>
+                                <form action="{% url 'Deletebook' dataid=d.id %}">
+                                    <button  type="submit" class="btn btn-primary">Delete</button>
+                                </form>
+                            </td>
+                         </tr>
+                        {% endfor %}
+                        </tbody>
+                      </table>
+                    </div>
+        <script>
+    function alertmsg(){
+        window.alert("contact customer")
+        }
+</script>
+            </body>
+</html>
+{% endblock %}

@@ -1,0 +1,92 @@
+<div class="cart-section mt-150 mb-150">
+		    <div class="container">
+                <div class="row">
+                        <div class="col-lg-8 col-md-12">
+
+                            <div class="card" >
+                                      <div class="card-body">
+                                        <h4 class="card-title">Carepoint Cart Details</h4>
+
+                                        </p>
+                                        <div class="table-responsive">
+                                          <table class="table table-bordered" style="border: 1px solid black;">
+                                            <thead>
+                                              <tr>
+
+                                                <th>  Name </th>
+                                                <th> quantity</th>
+                                                <th> price</th>
+                                                 <th></th>
+                                              </tr>
+                                            </thead>
+                                            <tbody>
+                                            {% for d in data %}
+                                            <tr>
+                                                <td>{{ d.PDCTNAME }}</td>
+                                                <td>{{ d.QUANTITY}}</td>
+                                                 <td class="item-price">{{ d.PRIZE}}</td>
+                                                <td class="product-remove"><a href="{% url 'deletecartfont' dataid=d.id %}"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+
+
+                                            </tr>
+                                            {% endfor %}
+                                            </tbody>
+                                          </table>
+											<div style="padding-left:550px;">
+											<button  class="btn btn-success" id="calculateTotal"> Calculate total</button>
+											</div>
+                                        </div>
+                                      </div>
+                                    </div>
+
+                        </div>
+                        <div class="col-lg-4" style="padding-top: 50px;">
+					<div class="total-section">
+						<table class="total-table">
+							<thead class="total-table-head">
+								<tr class="table-total-row">
+									<th>Total</th>
+									<th>Price</th>
+								</tr>
+							</thead>
+							<tbody>
+
+								<tr class="total-data">
+									<td><strong>Shipping: </strong></td>
+									<td> Free Shipping</td>
+								</tr>
+								<tr class="total-data">
+									<td><strong>Estimate: </strong></td>
+									<div class="cart-buttons">
+
+                                    <td id="totalPrice"></td>
+									</div>
+								</tr>
+
+							</tbody>
+						</table>
+						<div class="card-group">
+							<form action="{% url 'appointment' %}">
+							<button type="submit"  class="btn btn-primary">Check Out</button>
+							</form>
+						</div>
+					</div>
+
+
+				</div>
+                </div>
+            </div>
+        </div>
+
+data = cartdb.objects.all()
+
+
+, {'data': data}
+
+ {% for d in data %}
+                                <input type="hidden" class="form-control"   name="enquiry" value="{{d.CATEGORY}}">
+                                <input type="hidden" class="form-control"   name="quantity" value="{{ d.QUANTITY }}">
+
+
+
+                                {% endfor %}
